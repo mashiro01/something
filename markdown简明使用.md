@@ -220,4 +220,16 @@ markdown作为一个便捷的标记性语言，对于文档排版有很好的效
 - [markdown数学公式语法](https://www.jianshu.com/p/cf36c5af997a)
 - [Markdown数学符号&公式](https://blog.csdn.net/katherine_hsr/article/details/79179622)
 
-$f(x) = sin(x) + cos(x)$
+## 推荐的编辑器
+
+个人比较喜欢用`vscode`写md，加上这几个插件
+
+```text
+markdown preview enhanced     ->      预览加强，不知道比官方的高到哪里了
+
+markdownlint        ->      markdown 语法规范工具
+
+crossnote       ->        实现typroa的功能，持有 md文件管理的作用
+
+github theme      ->      强烈推荐这个主题
+```
