@@ -4,6 +4,16 @@ note:
     modifiedAt: 2020-06-21T06:59:12.684Z
     tags: []
 ---
+<!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [介绍](#介绍)
+- [基本使用](#基本使用)
+
+<!-- /code_chunk_output -->
+
+
 # AWK 基础学习
 ## 介绍
 **AWK** 是一种处理文本文件的语言，是一个强大的文本分析工具。
