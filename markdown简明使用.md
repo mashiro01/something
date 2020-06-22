@@ -225,7 +225,7 @@ markdown作为一个便捷的标记性语言，对于文档排版有很好的效
 个人比较喜欢用`vscode`写md，加上这几个插件
 
 ```text
-markdown preview enhanced     ->      预览加强，不知道比官方的高到哪里了
+markdown preview enhanced     ->      预览加强，不知道比官方的高到哪去里了
 
 markdownlint        ->      markdown 语法规范工具
 
