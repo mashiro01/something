@@ -219,6 +219,7 @@ markdown作为一个便捷的标记性语言，对于文档排版有很好的效
 - [Markdown 教程](https://www.runoob.com/markdown/md-tutorial.html)
 - [markdown数学公式语法](https://www.jianshu.com/p/cf36c5af997a)
 - [Markdown数学符号&公式](https://blog.csdn.net/katherine_hsr/article/details/79179622)
+- [Github -- Markdown基本撰写和格式语法](https://docs.github.com/cn/github/writing-on-github/basic-writing-and-formatting-syntax)
 
 ## 推荐的编辑器
 
