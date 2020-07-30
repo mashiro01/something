@@ -93,11 +93,11 @@ index-url = xxx
 
 国内镜像源:
 
-- 阿里云 http://mirrors.aliyun.com/pypi/simple/
-- 中国科技大学 https://pypi.mirrors.ustc.edu.cn/simple/
-- 豆瓣(douban) http://pypi.douban.com/simple/
-- 清华大学 https://pypi.tuna.tsinghua.edu.cn/simple/
-- 中国科学技术大学 http://pypi.mirrors.ustc.edu.cn/simple/
+- 阿里云 <http://mirrors.aliyun.com/pypi/simple/>
+- 中国科技大学 <https://pypi.mirrors.ustc.edu.cn/simple/>
+- 豆瓣(douban) <http://pypi.douban.com/simple/>
+- 清华大学 <https://pypi.tuna.tsinghua.edu.cn/simple/>
+- 中国科学技术大学 <http://pypi.mirrors.ustc.edu.cn/simple/>
 
 ### 代理
 
@@ -302,4 +302,3 @@ lxrunoffline是一款强大的wsl管理工具
 这里就直接放出大佬的记录
 
 [LxRunOffline 使用教程 - WSL 自定义安装、备份](https://p3terx.com/archives/manage-wsl-with-lxrunoffline.html)
-

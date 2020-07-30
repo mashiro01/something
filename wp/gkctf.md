@@ -1,8 +1,7 @@
 ---
-note:
-    createdAt: 2020-05-26T02:16:22.785Z
-    modifiedAt: 2020-06-15T12:44:46.513Z
-    tags: []
+tags: []
+created: 2020-05-26T02:16:22.785Z
+modified: 2020-06-15T12:44:46.513Z
 ---
 # GKCTF
 

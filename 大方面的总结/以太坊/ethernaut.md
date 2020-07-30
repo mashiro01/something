@@ -1,9 +1,3 @@
----
-note:
-    createdAt: 2020-05-26T02:16:43.140Z
-    modifiedAt: 2020-06-07T01:37:27.964Z
-    tags: []
----
 # Ethernaut WP
 
 ## 前言

@@ -1,8 +1,7 @@
 ---
-note:
-  createdAt: 2020-06-19T03:26:27.410Z
-  modifiedAt: 2020-06-21T06:59:12.684Z
-  tags: []
+tags: []
+created: 2020-06-19T03:26:27.410Z
+modified: 2020-06-21T06:59:12.684Z
 ---
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=2 depthTo=3 orderedList=false} -->
