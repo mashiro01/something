@@ -1,5 +1,11 @@
 # docker 基本操作(一)：镜像
 
+## 何为镜像
+
+镜像是Docker的三大组件之一，且是容器运行的基础
+
+> Docker的镜像采用分层存储，以保证高效传输
+
 ## 使用docker镜像
 
 ### 获取docker镜像
@@ -103,6 +109,14 @@ mattrayner/lamp     latest              05750cfa54d5        10 days ago         
 
 - 使用`--format`能自定义显示的内容
 - 使用`--digests`能够显示摘要
+
+### 查看镜像的细节
+
+```shell
+docker image inspect <image-name>
+```
+
+可以查看镜像的详细信息
 
 ### 运行
 
