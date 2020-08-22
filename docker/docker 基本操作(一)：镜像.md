@@ -4,7 +4,13 @@
 
 镜像是Docker的三大组件之一，且是容器运行的基础
 
-> Docker的镜像采用分层存储，以保证高效传输
+我们可以把镜像看作是虚拟机运行所需要的**镜像文件**
+
+> Docker的镜像采用分层存储，以保证高效传输，且每一层都可以看作是独立的对象
+
+![i_c](./img/一/image_contaniner.png)
+
+> 在windows上docker分为`windows容器`和`linux容器`，而在linux上只能运行linux容器
 
 ## 使用docker镜像
 
@@ -38,6 +44,8 @@ d39ece66b667: Pull complete
 65599be66378: Pull complete
 1a01f9d0f080: Pull complete
 ```
+
+![image](./img/一/repertoire.png)
 
 从这里可以看出docker的镜像存储是分层的
 
@@ -92,9 +100,10 @@ mattrayner/lamp     latest              05750cfa54d5        10 days ago         
 - `--filter -f`筛选器
     > docker images -f [filter options]
 
-  - since   --列出在某一镜像安装之后安装的镜像
-  - before  --列出在某一镜像安装之前安装的镜像
-  - label   --列出label为指定值的镜像
+  - since    --列出在某一镜像安装之后安装的镜像
+  - before   --列出在某一镜像安装之前安装的镜像
+  - label    --列出label为指定值的镜像
+  - dangling --列出悬虚镜像
 
 #### 以特定格式进行显示
 
@@ -145,3 +154,27 @@ docker run -it --rm mattrayner/lamp bash
 > 镜像可以是`长id`，`短id`，`REPOSITORY`，`镜像摘要`
 
 > 同时我们也可以组合命令来进行删除
+
+## 镜像的深层结构
+
+### 镜像的层式结构
+
+docker的镜像是由一些`松耦合`的**只读**镜像层组成的
+
+![image](./img/一/image.png)
+
+要组成一个完整的镜像文件，我们首先要有一个`基础镜像`(一般为**最小化的系统镜像**)，之后再在其上增加**其他服务的镜像**
+
+> 对于不同镜像中的重复部分，我们只会在完整的镜像中显示**不重叠的部分**以及重叠文件在分层中**最新版本**
+
+![layers](./img/一/layers.png)
+
+![layers](./img/一/full.png)
+
+#### 层级共享
+
+前文拉取镜像时候我们可以看到每一层镜像都有其对于的`hash值`(sha256)，而且镜像层级之间的关系是**松耦合**的
+
+这样对于使用了**同一层**的镜像，其能共用这些镜像层
+
+> 这里同一层指的是hash值相同，这个hash散列值是根据层中的内容所得出的，任何对于镜像层的更改都会导致这一值发生更改
